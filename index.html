@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Anime.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -30,11 +30,10 @@
     <div class="loading-screen" id="loading">
         <div class="loading-content">
             <div class="loading-logo">
-                <div class="logo-lines">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+                <div class="logo-icon">
+                    <i data-lucide="shield"></i>
                 </div>
+                <h1>Zilverdam RP</h1>
             </div>
             <div class="loading-progress">
                 <div class="progress-bar">
@@ -49,6 +48,7 @@
     <nav class="nav" id="nav">
         <div class="nav-container">
             <div class="nav-logo">
+                <i data-lucide="shield"></i>
                 <span>Zilverdam RP</span>
             </div>
             <div class="nav-links">
@@ -72,35 +72,35 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-video" id="hero-video"></div>
-            <div class="hero-overlay"></div>
+            <div class="hero-overlay" id="hero-overlay"></div>
             <div class="hero-container">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <i data-lucide="zap"></i>
-                        <span>Premium Nederlandse Roleplay</span>
+                        <i data-lucide="crown"></i>
+                        <span>Premium FiveM Roleplay</span>
                     </div>
                     <h1 class="hero-title">
                         <span class="title-line">Welkom bij</span>
                         <span class="title-line gradient-text">Zilverdam Roleplay</span>
                     </h1>
                     <p class="hero-description">
-                        Ervaar de meest realistische Nederlandse roleplay met geavanceerde features,
-                        professionele staff en een unieke gemeenschap.
+                        Ervaar de ultieme Nederlandse FiveM roleplay met geavanceerde custom scripts,
+                        professionele staff en een actieve community.
                     </p>
                     <div class="hero-actions">
                         <button class="btn btn-primary" onclick="connectToServer()">
                             <span>Verbinden met Server</span>
-                            <i data-lucide="arrow-right"></i>
-                        </button>
-                        <button class="btn btn-secondary" onclick="playTrailer()">
                             <i data-lucide="play"></i>
+                        </button>
+                        <button class="btn btn-secondary" onclick="toggleTrailer()">
+                            <i data-lucide="film"></i>
                             <span>Bekijk Trailer</span>
                         </button>
                     </div>
                     <div class="hero-stats">
                         <div class="stat">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Actieve Spelers</span>
+                            <span class="stat-number">250+</span>
+                            <span class="stat-label">Daily Players</span>
                         </div>
                         <div class="stat">
                             <span class="stat-number">99.9%</span>
@@ -113,16 +113,32 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="hero-grid">
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
-                        <div class="grid-item"></div>
+                    <div class="server-card">
+                        <div class="server-status online">
+                            <div class="status-indicator"></div>
+                            <span>Server Online</span>
+                        </div>
+                        <div class="server-info-card">
+                            <h3>Zilverdam RP</h3>
+                            <div class="server-details">
+                                <div class="detail">
+                                    <i data-lucide="users"></i>
+                                    <span>256/512 Players</span>
+                                </div>
+                                <div class="detail">
+                                    <i data-lucide="clock"></i>
+                                    <span>24/7 Online</span>
+                                </div>
+                                <div class="detail">
+                                    <i data-lucide="map-pin"></i>
+                                    <span>Netherlands</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-full" onclick="connectToServer()">
+                                <i data-lucide="log-in"></i>
+                                <span>Join Server</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,9 +148,9 @@
         <section id="features" class="features">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Gebouwd voor excellentie</h2>
+                    <h2 class="section-title">Server Features</h2>
                     <p class="section-description">
-                        Elke functie ontworpen met precisie en doel
+                        Ontdek onze geavanceerde FiveM features en custom scripts
                     </p>
                 </div>
                 <div class="features-grid">
@@ -142,43 +158,43 @@
                         <div class="feature-icon">
                             <i data-lucide="cpu"></i>
                         </div>
-                        <h3>Hoge Prestaties</h3>
-                        <p>Geoptimaliseerde infrastructuur met 99.9% uptime zonder lag</p>
+                        <h3>Optimized Performance</h3>
+                        <p>High-performance server met 0 lag en snelle load times</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i data-lucide="shield-check"></i>
                         </div>
-                        <h3>Geavanceerde Beveiliging</h3>
-                        <p>Militaire bescherming tegen cheaters en kwaadwillenden</p>
+                        <h3>Advanced Anti-Cheat</h3>
+                        <p>State-of-the-art anti-cheat systeem voor fair gameplay</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i data-lucide="users"></i>
+                            <i data-lucide="car"></i>
                         </div>
-                        <h3>Elite Gemeenschap</h3>
-                        <p>Gecureerde spelersbasis gericht op kwalitatieve roleplay ervaringen</p>
+                        <h3>Custom Vehicles</h3>
+                        <p>500+ custom voertuigen met realistische handling</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i data-lucide="headphones"></i>
+                            <i data-lucide="home"></i>
                         </div>
-                        <h3>24/7 Support</h3>
-                        <p>Professioneel supportteam dag en nacht beschikbaar</p>
+                        <h3>Housing System</h3>
+                        <p>Realistisch housing systeem met interior customization</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i data-lucide="code"></i>
+                            <i data-lucide="briefcase"></i>
                         </div>
-                        <h3>Aangepast Framework</h3>
-                        <p>Eigen systemen gebouwd vanaf de grond voor optimale prestaties</p>
+                        <h3>Jobs & Economy</h3>
+                        <p>Diverse legale en illegale jobs met balans economy</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i data-lucide="trending-up"></i>
+                            <i data-lucide="smartphone"></i>
                         </div>
-                        <h3>Regelmatige Updates</h3>
-                        <p>Continue verbeteringen en nieuwe content elke week</p>
+                        <h3>Custom Phone</h3>
+                        <p>Geavanceerd telefoon systeem met apps en banking</p>
                     </div>
                 </div>
             </div>
@@ -188,9 +204,9 @@
         <section id="applications" class="applications">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Solliciteer bij Zilverdam RP</h2>
+                    <h2 class="section-title">Word Lid van Ons Team</h2>
                     <p class="section-description">
-                        Word onderdeel van onze professionele teams
+                        Solliciteer voor een van onze professionele departments
                     </p>
                 </div>
                 <div class="applications-grid">
@@ -222,23 +238,23 @@
                         <div class="application-icon">
                             <i data-lucide="users"></i>
                         </div>
-                        <h3>Staff</h3>
+                        <h3>Staff Team</h3>
                         <p>Help de community en handhaaf de serverregels</p>
                         <button class="btn btn-primary application-btn">Solliciteren</button>
                     </div>
-                    <div class="application-card" data-department="pechhulp">
+                    <div class="application-card" data-department="anwb">
                         <div class="application-icon">
                             <i data-lucide="wrench"></i>
                         </div>
-                        <h3>Pechhulp</h3>
+                        <h3>ANWB</h3>
                         <p>Bied hulp aan gestrande voertuigen in Zilverdam</p>
                         <button class="btn btn-primary application-btn">Solliciteren</button>
                     </div>
-                    <div class="application-card" data-department="luxury-dealer">
+                    <div class="application-card" data-department="dealer">
                         <div class="application-icon">
                             <i data-lucide="car"></i>
                         </div>
-                        <h3>Luxury Dealer</h3>
+                        <h3>Cardealer</h3>
                         <p>Verkoop exclusieve voertuigen aan onze inwoners</p>
                         <button class="btn btn-primary application-btn">Solliciteren</button>
                     </div>
@@ -292,7 +308,7 @@
                                         <i data-lucide="message-circle"></i>
                                         Discord Gebruikersnaam *
                                     </label>
-                                    <input type="text" id="applicant-discord" name="discord" required class="form-input" placeholder="gebruikersnaam#1234">
+                                    <input type="text" id="applicant-discord" name="discord" required class="form-input" placeholder="gebruikersnaam">
                                 </div>
                                 
                                 <div class="form-group">
@@ -342,54 +358,41 @@
         <section id="team" class="team">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Ontmoet het team</h2>
+                    <h2 class="section-title">Ons Team</h2>
                     <p class="section-description">
-                        De professionals achter uw ervaring
+                        De professionals achter Zilverdam Roleplay
                     </p>
                 </div>
                 <div class="team-grid">
                     <div class="team-card owner">
                         <div class="member-avatar">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Server Eigenaar">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face" alt="ZEXTY">
+                            <div class="member-badge">Eigenaar</div>
                         </div>
-                        <h3>Alex Johnson</h3>
-                        <p>Oprichter & Lead Developer</p>
+                        <h3>ZEXTY</h3>
+                        <p>Founder & Lead Developer</p>
                         <div class="member-socials">
                             <a href="#" aria-label="Discord">
                                 <i data-lucide="message-circle"></i>
                             </a>
-                            <a href="#" aria-label="Steam">
-                                <i data-lucide="gamepad-2"></i>
+                            <a href="#" aria-label="GitHub">
+                                <i data-lucide="github"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="team-card">
+                    <div class="team-card co-owner">
                         <div class="member-avatar">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face" alt="Admin">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop&crop=face" alt="BLANKO">
+                            <div class="member-badge">Co-Eigenaar</div>
                         </div>
-                        <h3>Sarah Chen</h3>
-                        <p>Hoofd Administrator</p>
+                        <h3>BLANKO</h3>
+                        <p>Co-Owner & Community Manager</p>
                         <div class="member-socials">
                             <a href="#" aria-label="Discord">
                                 <i data-lucide="message-circle"></i>
                             </a>
-                            <a href="#" aria-label="Steam">
-                                <i data-lucide="gamepad-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <div class="member-avatar">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Developer">
-                        </div>
-                        <h3>Mike Rodriguez</h3>
-                        <p>Senior Developer</p>
-                        <div class="member-socials">
-                            <a href="#" aria-label="Discord">
-                                <i data-lucide="message-circle"></i>
-                            </a>
-                            <a href="#" aria-label="Steam">
-                                <i data-lucide="gamepad-2"></i>
+                            <a href="#" aria-label="Twitter">
+                                <i data-lucide="twitter"></i>
                             </a>
                         </div>
                     </div>
@@ -401,9 +404,9 @@
         <section id="rules" class="rules">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Algemene Plaatselijke Verordening (APV)</h2>
+                    <h2 class="section-title">Algemene Plaatselijke Verordening</h2>
                     <p class="section-description">
-                        Duidelijke regels voor een betere ervaring voor iedereen
+                        Lees onze serverregels voor de beste roleplay ervaring
                     </p>
                 </div>
                 <div class="rules-grid">
@@ -411,54 +414,54 @@
                         <div class="rule-icon">
                             <i data-lucide="shield"></i>
                         </div>
-                        <h3>Respect & Fair Play</h3>
+                        <h3>Algemene Regels</h3>
                         <ul class="rule-list">
-                            <li>Behandel alle spelers en staff met respect</li>
-                            <li>Geen intimidatie, discriminatie of giftig gedrag</li>
-                            <li>Houd gesprekken gepast en familie-vriendelijk</li>
-                            <li>Gebruik Nederlands in openbare kanalen</li>
-                            <li>Geen ongepaste of beledigende karakternamen</li>
-                            <li>Respecteer de beslissingen van staffleden</li>
-                            <li>Geen meta-gaming (gebruik van OOC kennis IC)</li>
-                            <li>Powergaming is niet toegestaan</li>
-                            <li>Valide RP-reden vereist voor criminele activiteiten</li>
-                            <li>Geen RDM (Random Deathmatch) of VDM (Vehicle Deathmatch)</li>
+                            <li>Respecteer alle spelers en staff members</li>
+                            <li>Geen discriminatie, racisme of haatzaaien</li>
+                            <li>Nederlandse taal verplicht in openbare kanalen</li>
+                            <li>Geen meta-gaming of powergaming</li>
+                            <li>Valide RP-reden vereist voor criminele acties</li>
+                            <li>New Life Rule (NLR) moet worden nageleefd</li>
+                            <li>FearRP is verplicht in bedreigende situaties</li>
+                            <li>Geen RDM (Random Deathmatch) of VDM</li>
+                            <li>Combat logging is strikt verboden</li>
+                            <li>Volg altijd instructies van staff members op</li>
                         </ul>
                     </div>
                     <div class="rule-card">
                         <div class="rule-icon">
-                            <i data-lucide="gamepad-2"></i>
+                            <i data-lucide="car"></i>
                         </div>
-                        <h3>Gameplay Regels</h3>
+                        <h3>Voertuig Regels</h3>
                         <ul class="rule-list">
-                            <li>Geen cheats, hacks of exploits</li>
-                            <li>Blijf in karakter tijdens roleplay</li>
-                            <li>Geen willekeurig doden of griefen</li>
-                            <li>Volg verkeerswetten en realistisch gedrag</li>
-                            <li>FearRP moet worden nageleefd</li>
-                            <li>New Life Rule (NLR) is van toepassing</li>
-                            <li>Combat Logging is verboden</li>
-                            <li>Geen combat in safe zones</li>
-                            <li>Voertuigen mogen niet worden vernietigd zonder geldige RP-reden</li>
-                            <li>Geen excessive trolling of spammen</li>
+                            <li>Volg de verkeersregels tenzij in pursuit</li>
+                            <li>Geen excessive vehicle abuse</li>
+                            <li>Realistische rijstijl aanhouden</li>
+                            <li>Voertuigen niet vernietigen zonder RP-reden</li>
+                            <li>Parkeer voertuigen op daarvoor bestemde plaatsen</li>
+                            <li>Geen vehicle spawning in gevaarlijke situaties</li>
+                            <li>Respecteer pursuit protocols</li>
+                            <li>Geen OOC voertuig aanpassingen tijdens RP</li>
+                            <li>Motor uit tijdens roleplay scenes</li>
+                            <li>Realistische snelheden aanhouden</li>
                         </ul>
                     </div>
                     <div class="rule-card">
                         <div class="rule-icon">
                             <i data-lucide="users"></i>
                         </div>
-                        <h3>Community Standaarden</h3>
+                        <h3>Roleplay Regels</h3>
                         <ul class="rule-list">
-                            <li>Volg staff instructies te allen tijde</li>
-                            <li>Meld regel overtredingen aan staff</li>
-                            <li>Geen advertenties voor andere servers</li>
-                            <li>Houd karakter namen realistisch</li>
-                            <li>Geen ongeautoriseerde opnames voor publicatie</li>
-                            <li>Discord regels zijn ook van toepassing in-game</li>
-                            <li>Respecteer de privacy van andere spelers</li>
-                            <li>Geen ongepaste roleplay (ERP) in openbare ruimtes</li>
-                            <li>Bugs en exploits moeten direct worden gemeld</li>
-                            <li>Houd microfoonschoonheid in acht (geen achtergrondgeluid)</li>
+                            <li>Blijf in karakter tijdens roleplay</li>
+                            <li>Geen failRP of valueRP</li>
+                            <li>Realistische karakter ontwikkeling</li>
+                            <li>Geen character switching tijdens scenes</li>
+                            <li>Respecteer roleplay scenarios</li>
+                            <li>Geen excessive trolling of spammen</li>
+                            <li>Microfoon kwaliteit in acht nemen</li>
+                            <li>Geen background noise tijdens RP</li>
+                            <li>Report bugs direct aan staff</li>
+                            <li>Have fun en wees creatief!</li>
                         </ul>
                     </div>
                 </div>
@@ -470,8 +473,8 @@
             <div class="container">
                 <div class="join-content">
                     <div class="join-text">
-                        <h2>Klaar om te beginnen?</h2>
-                        <p>Sluit je aan bij duizenden spelers in de meest geavanceerde FiveM ervaring</p>
+                        <h2>Ready to Join?</h2>
+                        <p>Connect met onze server en begin met roleplayen!</p>
                     </div>
                     <div class="join-actions">
                         <div class="server-info">
@@ -483,13 +486,13 @@
                             </div>
                         </div>
                         <div class="join-links">
-                            <a href="#" class="join-link">
+                            <a href="#" class="join-link discord-link">
                                 <i data-lucide="message-circle"></i>
-                                <span>Discord</span>
+                                <span>Join Discord</span>
                             </a>
                             <a href="#rules" class="join-link">
                                 <i data-lucide="book-open"></i>
-                                <span>APV</span>
+                                <span>Lees APV</span>
                             </a>
                         </div>
                     </div>
@@ -502,12 +505,39 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Zilverdam Roleplay. Alle rechten voorbehouden.</p>
-                <div class="footer-links">
-                    <a href="#">Privacy</a>
-                    <a href="#">Voorwaarden</a>
-                    <a href="https://fourtwenty.dev" target="_blank">Template door FourTwentyDevs</a>
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i data-lucide="shield"></i>
+                        <span>Zilverdam RP</span>
+                    </div>
+                    <p>Premium FiveM Roleplay Server</p>
                 </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Server</h4>
+                        <a href="#home">Home</a>
+                        <a href="#features">Features</a>
+                        <a href="#rules">APV</a>
+                        <a href="#applications">Solliciteren</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#">Discord</a>
+                        <a href="#">Tickets</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Bugs Report</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zilverdam Roleplay. All rights reserved.</p>
+                <p>FiveM is a registered trademark of Rockstar Games. We are not affiliated with Rockstar Games.</p>
             </div>
         </div>
     </footer>
