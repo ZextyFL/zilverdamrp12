@@ -246,58 +246,97 @@
             </div>
         </section>
 
-<!-- Application Modal -->
-<div id="application-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3 id="modal-title">Sollicitatieformulier</h3>
-      <button class="modal-close" aria-label="Sluiten">&times;</button>
-    </div>
-    <form id="application-form" class="application-form">
-      <input type="hidden" id="application-department" name="department">
-      
-      <div class="form-group">
-        <label for="applicant-name">Volledige Naam *</label>
-        <input type="text" id="applicant-name" name="name" required placeholder="Voer uw volledige naam in">
-      </div>
-      
-      <div class="form-group">
-        <label for="applicant-age">Leeftijd *</label>
-        <input type="number" id="applicant-age" name="age" min="16" max="100" required placeholder="16">
-      </div>
-      
-      <div class="form-group">
-        <label for="applicant-discord">Discord Gebruikersnaam *</label>
-        <input type="text" id="applicant-discord" name="discord" required placeholder="gebruikersnaam#1234">
-      </div>
-      
-      <div class="form-group">
-        <label for="applicant-experience">Eerdere Roleplay Ervaring *</label>
-        <textarea id="applicant-experience" name="experience" rows="4" required placeholder="Beschrijf uw ervaring met FiveM roleplay..."></textarea>
-      </div>
-      
-      <div class="form-group">
-        <label for="applicant-motivation">Motivatie *</label>
-        <textarea id="applicant-motivation" name="motivation" rows="4" required placeholder="Waarom wil je bij dit team komen?"></textarea>
-      </div>
-      
-      <div class="form-group">
-        <label for="applicant-availability">Beschikbaarheid (uren per week) *</label>
-        <input type="number" id="applicant-availability" name="availability" min="1" max="168" required placeholder="10">
-      </div>
-      
-      <div class="form-actions">
-        <button type="button" class="btn btn-secondary" onclick="closeModal()">
-          <span>Annuleren</span>
-        </button>
-        <button type="submit" class="btn btn-primary">
-          <span>Sollicitatie Verzenden</span>
-          <i data-lucide="send"></i>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
+        <!-- Application Modal -->
+        <div id="application-modal" class="modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-container">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title-section">
+                            <div class="modal-icon">
+                                <i data-lucide="file-text"></i>
+                            </div>
+                            <div>
+                                <h3 id="modal-title">Sollicitatieformulier</h3>
+                                <p id="modal-subtitle">Vul het formulier in om te solliciteren</p>
+                            </div>
+                        </div>
+                        <button class="modal-close" aria-label="Sluiten">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <form id="application-form" class="application-form">
+                            <input type="hidden" id="application-department" name="department">
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="applicant-name" class="form-label">
+                                        <i data-lucide="user"></i>
+                                        Volledige Naam *
+                                    </label>
+                                    <input type="text" id="applicant-name" name="name" required class="form-input" placeholder="Voer uw volledige naam in">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="applicant-age" class="form-label">
+                                        <i data-lucide="calendar"></i>
+                                        Leeftijd *
+                                    </label>
+                                    <input type="number" id="applicant-age" name="age" min="16" max="100" required class="form-input" placeholder="16">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="applicant-discord" class="form-label">
+                                        <i data-lucide="message-circle"></i>
+                                        Discord Gebruikersnaam *
+                                    </label>
+                                    <input type="text" id="applicant-discord" name="discord" required class="form-input" placeholder="gebruikersnaam#1234">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="applicant-availability" class="form-label">
+                                        <i data-lucide="clock"></i>
+                                        Beschikbaarheid (uren per week) *
+                                    </label>
+                                    <input type="number" id="applicant-availability" name="availability" min="1" max="168" required class="form-input" placeholder="10">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="applicant-experience" class="form-label">
+                                    <i data-lucide="award"></i>
+                                    Eerdere Roleplay Ervaring *
+                                </label>
+                                <textarea id="applicant-experience" name="experience" rows="4" required class="form-textarea" placeholder="Beschrijf uw ervaring met FiveM roleplay, vorige servers, functies, etc..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="applicant-motivation" class="form-label">
+                                    <i data-lucide="target"></i>
+                                    Motivatie *
+                                </label>
+                                <textarea id="applicant-motivation" name="motivation" rows="4" required class="form-textarea" placeholder="Waarom wil je bij dit team komen? Wat zijn je doelen?"></textarea>
+                            </div>
+                            
+                            <div class="form-footer">
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-ghost" onclick="closeModal()">
+                                        <i data-lucide="x"></i>
+                                        <span>Annuleren</span>
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <span>Sollicitatie Verzenden</span>
+                                        <i data-lucide="send"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Team Section -->
         <section id="team" class="team">
