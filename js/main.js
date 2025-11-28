@@ -4,6 +4,7 @@ let isLoading = true;
 let currentSection = 'home';
 let player;
 let isVideoPlaying = false;
+let isOverlayVisible = true;
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
@@ -60,25 +61,45 @@ function onPlayerStateChange(event) {
   }
 }
 
-function playTrailer() {
-  if (player) {
-    player.seekTo(0);
-    player.playVideo();
+function toggleTrailer() {
+  const overlay = document.getElementById('hero-overlay');
+  
+  if (isOverlayVisible) {
+    // Hide overlay for better video viewing
+    overlay.classList.add('hidden');
+    isOverlayVisible = false;
     
     // Show notification
-    showNotification('Trailer wordt afgespeeld', 'info');
+    showNotification('🎬 Overlay verborgen - Geniet van de trailer!', 'info');
+    
+    // Auto-show overlay after 30 seconds
+    setTimeout(() => {
+      if (!isOverlayVisible) {
+        overlay.classList.remove('hidden');
+        isOverlayVisible = true;
+        showNotification('🔍 Overlay weer zichtbaar', 'info');
+      }
+    }, 30000);
   } else {
-    window.open('https://www.youtube.com/watch?v=Urb3BswP7VI', '_blank');
+    // Show overlay
+    overlay.classList.remove('hidden');
+    isOverlayVisible = true;
+    showNotification('🔍 Overlay weer zichtbaar', 'info');
+  }
+  
+  // Ensure video is playing
+  if (player) {
+    player.playVideo();
   }
 }
 
 function connectToServer() {
   // Copy connection info to clipboard
   navigator.clipboard.writeText('connect 217.154.169.87:40120').then(() => {
-    showNotification('Server IP gekopieerd naar klembord!', 'success');
+    showNotification('✅ Server IP gekopieerd naar klembord!', 'success');
   }).catch(err => {
     console.error('Failed to copy: ', err);
-    showNotification('Kon server IP niet kopiëren', 'error');
+    showNotification('❌ Kon server IP niet kopiëren', 'error');
   });
 }
 
@@ -87,16 +108,6 @@ function initLoading() {
   const loadingScreen = document.getElementById('loading');
   const progressFill = document.querySelector('.progress-fill');
   const progressText = document.querySelector('.progress-text');
-  const logoLines = document.querySelectorAll('.line');
-  
-  // Enhanced logo lines animation with opacity fade-in
-  anime({
-    targets: logoLines,
-    opacity: [0, 1],
-    delay: anime.stagger(150),
-    duration: 400,
-    easing: 'easeOutCubic'
-  });
   
   // Fast and smooth loading progress
   let progress = 0;
@@ -177,14 +188,14 @@ function startMainAnimations() {
     easing: 'easeOutCubic'
   });
   
-  // Animate grid items
+  // Animate feature cards with stagger
   anime({
-    targets: '.grid-item',
+    targets: '.feature-card',
     opacity: [0, 1],
-    scale: [0.8, 1],
-    delay: anime.stagger(80, {start: 600}),
-    duration: 500,
-    easing: 'easeOutBack'
+    translateY: [30, 0],
+    delay: anime.stagger(100, {start: 600}),
+    duration: 600,
+    easing: 'easeOutCubic'
   });
   
   // Initialize scroll-triggered animations
@@ -436,7 +447,7 @@ function initInteractions() {
   });
   
   // Card hover animations
-  const cards = document.querySelectorAll('.feature-card, .team-card, .application-card');
+  const cards = document.querySelectorAll('.feature-card, .team-card, .application-card, .rule-card');
   cards.forEach(card => {
     card.addEventListener('mouseenter', function() {
       anime({
@@ -693,8 +704,8 @@ function validateApplication(data) {
     errors.push('Je moet minimaal 16 jaar oud zijn om te solliciteren');
   }
   
-  if (!data.discord.trim() || !data.discord.includes('#')) {
-    errors.push('Vul een geldige Discord gebruikersnaam in (inclusief tag)');
+  if (!data.discord.trim()) {
+    errors.push('Vul een geldige Discord gebruikersnaam in');
   }
   
   if (!data.experience.trim()) {
@@ -781,11 +792,11 @@ function handleApplicationSubmit(e) {
 
 function sendToDiscordWebhook(data) {
   // VERVANG DIT MET JE EIGEN DISCORD WEBHOOK URL
-  const webhookUrl = 'https://discord.com/api/webhooks/1444079638606385236/VV1-2wp605Y0MumyhWw7MvmmVQ8tXu15uyTxETmr0zFr8Hk1oOKsOPVxbHMq0LwOyjyB';
+  const webhookUrl = 'https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN';
   
   const embed = {
     title: `📝 Nieuwe Sollicitatie - ${data.department}`,
-    color: 0x5b5bd6,
+    color: 0xf97316,
     thumbnail: {
       url: 'https://cdn.discordapp.com/embed/avatars/0.png'
     },
@@ -812,11 +823,11 @@ function sendToDiscordWebhook(data) {
       },
       {
         name: '🏆 Ervaring',
-        value: data.experience.substring(0, 1024) // Discord limit
+        value: data.experience.substring(0, 1024)
       },
       {
         name: '🎯 Motivatie',
-        value: data.motivation.substring(0, 1024) // Discord limit
+        value: data.motivation.substring(0, 1024)
       }
     ],
     timestamp: new Date().toISOString(),
@@ -944,7 +955,7 @@ function initAccessibility() {
   skipLink.style.position = 'absolute';
   skipLink.style.top = '-40px';
   skipLink.style.left = '6px';
-  skipLink.style.background = 'var(--color-black)';
+  skipLink.style.background = 'var(--color-primary)';
   skipLink.style.color = 'var(--color-white)';
   skipLink.style.padding = '8px';
   skipLink.style.textDecoration = 'none';
