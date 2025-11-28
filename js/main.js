@@ -507,7 +507,7 @@ function initInteractions() {
   closeBtn.addEventListener('click', closeModal);
   
   modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
+    if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
       closeModal();
     }
   });
@@ -605,13 +605,15 @@ function initInteractions() {
   });
 }
 
-// ===== APPLICATION SYSTEM =====
+// ===== MODERN APPLICATION SYSTEM =====
 function openApplicationModal(department, departmentName) {
   const modal = document.getElementById('application-modal');
   const modalTitle = document.getElementById('modal-title');
+  const modalSubtitle = document.getElementById('modal-subtitle');
   const departmentInput = document.getElementById('application-department');
   
   modalTitle.textContent = `Sollicitatie: ${departmentName}`;
+  modalSubtitle.textContent = `Vul het formulier in om te solliciteren voor ${departmentName}`;
   departmentInput.value = department;
   
   // Reset form
@@ -623,20 +625,28 @@ function openApplicationModal(department, departmentName) {
   // Prevent body scroll
   document.body.style.overflow = 'hidden';
   
-  // Animate modal in
+  // Animate modal in with backdrop
+  anime({
+    targets: '.modal-backdrop',
+    opacity: [0, 1],
+    duration: 300,
+    easing: 'easeOutQuad'
+  });
+  
   anime({
     targets: '.modal-content',
     opacity: [0, 1],
     scale: [0.9, 1],
     translateY: [20, 0],
-    duration: 300,
-    easing: 'easeOutBack'
+    duration: 400,
+    easing: 'easeOutBack',
+    delay: 100
   });
   
   // Focus on first input
   setTimeout(() => {
     document.getElementById('applicant-name').focus();
-  }, 300);
+  }, 500);
 }
 
 function closeModal() {
@@ -647,7 +657,14 @@ function closeModal() {
     opacity: [1, 0],
     scale: [1, 0.9],
     translateY: [0, 20],
-    duration: 200,
+    duration: 300,
+    easing: 'easeInQuad'
+  });
+  
+  anime({
+    targets: '.modal-backdrop',
+    opacity: [1, 0],
+    duration: 300,
     easing: 'easeInQuad',
     complete: () => {
       modal.style.display = 'none';
@@ -734,16 +751,25 @@ function handleApplicationSubmit(e) {
   sendToDiscordWebhook(applicationData)
     .then((response) => {
       if (response.ok) {
-        showNotification('Sollicitatie succesvol verzonden! We nemen binnenkort contact met je op.', 'success');
+        showNotification('✅ Sollicitatie succesvol verzonden! We nemen binnenkort contact met je op.', 'success');
         form.reset();
         closeModal();
+        
+        // Add success animation
+        anime({
+          targets: '.modal-content',
+          scale: [1, 0.9],
+          opacity: [1, 0],
+          duration: 300,
+          easing: 'easeInQuad'
+        });
       } else {
         throw new Error('Network response was not ok');
       }
     })
     .catch(error => {
       console.error('Error sending application:', error);
-      showNotification('Er ging iets mis bij het verzenden. Probeer het opnieuw of neem contact op via Discord.', 'error');
+      showNotification('❌ Er ging iets mis bij het verzenden. Probeer het opnieuw of neem contact op via Discord.', 'error');
     })
     .finally(() => {
       // Reset button
@@ -751,6 +777,65 @@ function handleApplicationSubmit(e) {
       submitBtn.disabled = false;
       lucide.createIcons();
     });
+}
+
+function sendToDiscordWebhook(data) {
+  // VERVANG DIT MET JE EIGEN DISCORD WEBHOOK URL
+  const webhookUrl = 'https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN';
+  
+  const embed = {
+    title: `📝 Nieuwe Sollicitatie - ${data.department}`,
+    color: 0x5b5bd6,
+    thumbnail: {
+      url: 'https://cdn.discordapp.com/embed/avatars/0.png'
+    },
+    fields: [
+      {
+        name: '👤 Naam',
+        value: data.name,
+        inline: true
+      },
+      {
+        name: '🎂 Leeftijd',
+        value: data.age,
+        inline: true
+      },
+      {
+        name: '💬 Discord',
+        value: data.discord,
+        inline: true
+      },
+      {
+        name: '⏰ Beschikbaarheid',
+        value: `${data.availability} uur per week`,
+        inline: true
+      },
+      {
+        name: '🏆 Ervaring',
+        value: data.experience.substring(0, 1024) // Discord limit
+      },
+      {
+        name: '🎯 Motivatie',
+        value: data.motivation.substring(0, 1024) // Discord limit
+      }
+    ],
+    timestamp: new Date().toISOString(),
+    footer: {
+      text: 'Zilverdam Roleplay - Sollicitatie Systeem'
+    }
+  };
+  
+  return fetch(webhookUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      embeds: [embed],
+      username: 'Zilverdam Sollicitaties',
+      avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png'
+    })
+  });
 }
 
 // ===== NOTIFICATION SYSTEM =====
@@ -771,8 +856,8 @@ function showNotification(message, type = 'info') {
   anime({
     targets: notification,
     opacity: [0, 1],
-    translateY: [20, 0],
-    duration: 300,
+    translateX: [100, 0],
+    duration: 400,
     easing: 'easeOutCubic'
   });
   
@@ -781,14 +866,14 @@ function showNotification(message, type = 'info') {
     anime({
       targets: notification,
       opacity: [1, 0],
-      translateY: [0, -20],
+      translateX: [0, 100],
       duration: 300,
       easing: 'easeInCubic',
       complete: () => {
         notification.remove();
       }
     });
-  }, 4000);
+  }, 5000);
 }
 
 function getNotificationIcon(type) {
@@ -927,244 +1012,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize accessibility features
   initAccessibility();
-  
-  // Add CSS for mobile navigation and new components
-  const style = document.createElement('style');
-  style.textContent = `
-    @media (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-top: 1px solid var(--color-gray-200);
-        flex-direction: column;
-        padding: var(--space-4);
-        gap: var(--space-4);
-        display: none;
-        opacity: 0;
-      }
-      
-      .nav-links.open {
-        display: flex;
-      }
-      
-      .keyboard-navigation *:focus {
-        outline: 2px solid var(--color-accent);
-        outline-offset: 2px;
-      }
-    }
-    
-    /* YouTube Video Background */
-    .hero-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-    }
-    
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.85);
-      z-index: -1;
-    }
-    
-    /* Applications Section */
-    .applications-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--space-8);
-    }
-    
-    .application-card {
-      background: var(--color-white);
-      padding: var(--space-8);
-      border-radius: var(--border-radius-lg);
-      border: 1px solid var(--color-gray-200);
-      text-align: center;
-      transition: all var(--transition-normal);
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    
-    .application-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--color-gray-300);
-    }
-    
-    .application-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--color-gray-100);
-      border-radius: var(--border-radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto var(--space-6);
-    }
-    
-    .application-icon i {
-      width: 32px;
-      height: 32px;
-      color: var(--color-gray-700);
-    }
-    
-    .application-card h3 {
-      font-size: var(--font-size-xl);
-      font-weight: 600;
-      color: var(--color-black);
-      margin-bottom: var(--space-3);
-    }
-    
-    .application-card p {
-      color: var(--color-gray-600);
-      margin-bottom: var(--space-6);
-    }
-    
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 2000;
-      backdrop-filter: blur(4px);
-    }
-    
-    .modal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--color-white);
-      border-radius: var(--border-radius-lg);
-      width: 90%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: var(--shadow-xl);
-    }
-    
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--space-6);
-      border-bottom: 1px solid var(--color-gray-200);
-    }
-    
-    .modal-header h3 {
-      font-size: var(--font-size-xl);
-      font-weight: 600;
-      color: var(--color-black);
-    }
-    
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: var(--font-size-2xl);
-      cursor: pointer;
-      color: var(--color-gray-600);
-      transition: color var(--transition-fast);
-    }
-    
-    .modal-close:hover {
-      color: var(--color-black);
-    }
-    
-    .application-form {
-      padding: var(--space-6);
-    }
-    
-    .form-group {
-      margin-bottom: var(--space-6);
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: var(--space-2);
-      font-weight: 500;
-      color: var(--color-gray-700);
-    }
-    
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: var(--space-3);
-      border: 1px solid var(--color-gray-300);
-      border-radius: var(--border-radius);
-      font-family: inherit;
-      font-size: var(--font-size-base);
-      transition: border-color var(--transition-fast);
-    }
-    
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--color-accent);
-    }
-    
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: var(--space-8);
-    }
-    
-    /* Notifications */
-    .notification {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--color-white);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-lg);
-      border-left: 4px solid var(--color-gray-400);
-      z-index: 3000;
-      max-width: 350px;
-    }
-    
-    .notification-success {
-      border-left-color: #10b981;
-    }
-    
-    .notification-error {
-      border-left-color: #ef4444;
-    }
-    
-    .notification-warning {
-      border-left-color: #f59e0b;
-    }
-    
-    .notification-info {
-      border-left-color: var(--color-accent);
-    }
-    
-    .notification-content {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      padding: var(--space-4);
-    }
-    
-    .notification-content i {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
-  `;
-  document.head.appendChild(style);
 });
 
 // ===== EXPORT FOR DEBUGGING =====
