@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zilverdam Roleplay - Premium FiveM Experience</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-lines">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Zilverdam RP</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#rules" class="nav-link">APV</a>
+                <a href="#join" class="nav-link">Join</a>
+                <a href="#applications" class="nav-link">Solliciteren</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-video" id="hero-video"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i data-lucide="zap"></i>
+                        <span>Premium Nederlandse Roleplay</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">Welkom bij</span>
+                        <span class="title-line gradient-text">Zilverdam Roleplay</span>
+                    </h1>
+                    <p class="hero-description">
+                        Ervaar de meest realistische Nederlandse roleplay met geavanceerde features,
+                        professionele staff en een unieke gemeenschap.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="connectToServer()">
+                            <span>Verbinden met Server</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                        <button class="btn btn-secondary" onclick="playTrailer()">
+                            <i data-lucide="play"></i>
+                            <span>Bekijk Trailer</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Actieve Spelers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99.9%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-grid">
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Gebouwd voor excellentie</h2>
+                    <p class="section-description">
+                        Elke functie ontworpen met precisie en doel
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <h3>Hoge Prestaties</h3>
+                        <p>Geoptimaliseerde infrastructuur met 99.9% uptime zonder lag</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <h3>Geavanceerde Beveiliging</h3>
+                        <p>Militaire bescherming tegen cheaters en kwaadwillenden</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <h3>Elite Gemeenschap</h3>
+                        <p>Gecureerde spelersbasis gericht op kwalitatieve roleplay ervaringen</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="headphones"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Professioneel supportteam dag en nacht beschikbaar</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="code"></i>
+                        </div>
+                        <h3>Aangepast Framework</h3>
+                        <p>Eigen systemen gebouwd vanaf de grond voor optimale prestaties</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="trending-up"></i>
+                        </div>
+                        <h3>Regelmatige Updates</h3>
+                        <p>Continue verbeteringen en nieuwe content elke week</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section id="applications" class="applications">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Solliciteer bij Zilverdam RP</h2>
+                    <p class="section-description">
+                        Word onderdeel van onze professionele teams
+                    </p>
+                </div>
+                <div class="applications-grid">
+                    <div class="application-card" data-department="politie">
+                        <div class="application-icon">
+                            <i data-lucide="shield"></i>
+                        </div>
+                        <h3>Politie</h3>
+                        <p>Handhaaf de wet en zorg voor veiligheid in Zilverdam</p>
+                        <button class="btn btn-primary application-btn">Solliciteren</button>
+                    </div>
+                    <div class="application-card" data-department="ambulance">
+                        <div class="application-icon">
+                            <i data-lucide="heart"></i>
+                        </div>
+                        <h3>Ambulance</h3>
+                        <p>Red levens en bied medische hulp aan burgers</p>
+                        <button class="btn btn-primary application-btn">Solliciteren</button>
+                    </div>
+                    <div class="application-card" data-department="kmar">
+                        <div class="application-icon">
+                            <i data-lucide="target"></i>
+                        </div>
+                        <h3>KMAR</h3>
+                        <p>Specialistische eenheid voor bijzondere operaties</p>
+                        <button class="btn btn-primary application-btn">Solliciteren</button>
+                    </div>
+                    <div class="application-card" data-department="staff">
+                        <div class="application-icon">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <h3>Staff</h3>
+                        <p>Help de community en handhaaf de serverregels</p>
+                        <button class="btn btn-primary application-btn">Solliciteren</button>
+                    </div>
+                    <div class="application-card" data-department="pechhulp">
+                        <div class="application-icon">
+                            <i data-lucide="wrench"></i>
+                        </div>
+                        <h3>Pechhulp</h3>
+                        <p>Bied hulp aan gestrande voertuigen in Zilverdam</p>
+                        <button class="btn btn-primary application-btn">Solliciteren</button>
+                    </div>
+                    <div class="application-card" data-department="luxury-dealer">
+                        <div class="application-icon">
+                            <i data-lucide="car"></i>
+                        </div>
+                        <h3>Luxury Dealer</h3>
+                        <p>Verkoop exclusieve voertuigen aan onze inwoners</p>
+                        <button class="btn btn-primary application-btn">Solliciteren</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Application Modal -->
+<div id="application-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-title">Sollicitatieformulier</h3>
+      <button class="modal-close" aria-label="Sluiten">&times;</button>
+    </div>
+    <form id="application-form" class="application-form">
+      <input type="hidden" id="application-department" name="department">
+      
+      <div class="form-group">
+        <label for="applicant-name">Volledige Naam *</label>
+        <input type="text" id="applicant-name" name="name" required placeholder="Voer uw volledige naam in">
+      </div>
+      
+      <div class="form-group">
+        <label for="applicant-age">Leeftijd *</label>
+        <input type="number" id="applicant-age" name="age" min="16" max="100" required placeholder="16">
+      </div>
+      
+      <div class="form-group">
+        <label for="applicant-discord">Discord Gebruikersnaam *</label>
+        <input type="text" id="applicant-discord" name="discord" required placeholder="gebruikersnaam#1234">
+      </div>
+      
+      <div class="form-group">
+        <label for="applicant-experience">Eerdere Roleplay Ervaring *</label>
+        <textarea id="applicant-experience" name="experience" rows="4" required placeholder="Beschrijf uw ervaring met FiveM roleplay..."></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="applicant-motivation">Motivatie *</label>
+        <textarea id="applicant-motivation" name="motivation" rows="4" required placeholder="Waarom wil je bij dit team komen?"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="applicant-availability">Beschikbaarheid (uren per week) *</label>
+        <input type="number" id="applicant-availability" name="availability" min="1" max="168" required placeholder="10">
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">
+          <span>Annuleren</span>
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <span>Sollicitatie Verzenden</span>
+          <i data-lucide="send"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+        <!-- Team Section -->
+        <section id="team" class="team">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Ontmoet het team</h2>
+                    <p class="section-description">
+                        De professionals achter uw ervaring
+                    </p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card owner">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Server Eigenaar">
+                        </div>
+                        <h3>Alex Johnson</h3>
+                        <p>Oprichter & Lead Developer</p>
+                        <div class="member-socials">
+                            <a href="#" aria-label="Discord">
+                                <i data-lucide="message-circle"></i>
+                            </a>
+                            <a href="#" aria-label="Steam">
+                                <i data-lucide="gamepad-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face" alt="Admin">
+                        </div>
+                        <h3>Sarah Chen</h3>
+                        <p>Hoofd Administrator</p>
+                        <div class="member-socials">
+                            <a href="#" aria-label="Discord">
+                                <i data-lucide="message-circle"></i>
+                            </a>
+                            <a href="#" aria-label="Steam">
+                                <i data-lucide="gamepad-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Developer">
+                        </div>
+                        <h3>Mike Rodriguez</h3>
+                        <p>Senior Developer</p>
+                        <div class="member-socials">
+                            <a href="#" aria-label="Discord">
+                                <i data-lucide="message-circle"></i>
+                            </a>
+                            <a href="#" aria-label="Steam">
+                                <i data-lucide="gamepad-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section id="rules" class="rules">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Algemene Plaatselijke Verordening (APV)</h2>
+                    <p class="section-description">
+                        Duidelijke regels voor een betere ervaring voor iedereen
+                    </p>
+                </div>
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <div class="rule-icon">
+                            <i data-lucide="shield"></i>
+                        </div>
+                        <h3>Respect & Fair Play</h3>
+                        <ul class="rule-list">
+                            <li>Behandel alle spelers en staff met respect</li>
+                            <li>Geen intimidatie, discriminatie of giftig gedrag</li>
+                            <li>Houd gesprekken gepast en familie-vriendelijk</li>
+                            <li>Gebruik Nederlands in openbare kanalen</li>
+                            <li>Geen ongepaste of beledigende karakternamen</li>
+                            <li>Respecteer de beslissingen van staffleden</li>
+                            <li>Geen meta-gaming (gebruik van OOC kennis IC)</li>
+                            <li>Powergaming is niet toegestaan</li>
+                            <li>Valide RP-reden vereist voor criminele activiteiten</li>
+                            <li>Geen RDM (Random Deathmatch) of VDM (Vehicle Deathmatch)</li>
+                        </ul>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon">
+                            <i data-lucide="gamepad-2"></i>
+                        </div>
+                        <h3>Gameplay Regels</h3>
+                        <ul class="rule-list">
+                            <li>Geen cheats, hacks of exploits</li>
+                            <li>Blijf in karakter tijdens roleplay</li>
+                            <li>Geen willekeurig doden of griefen</li>
+                            <li>Volg verkeerswetten en realistisch gedrag</li>
+                            <li>FearRP moet worden nageleefd</li>
+                            <li>New Life Rule (NLR) is van toepassing</li>
+                            <li>Combat Logging is verboden</li>
+                            <li>Geen combat in safe zones</li>
+                            <li>Voertuigen mogen niet worden vernietigd zonder geldige RP-reden</li>
+                            <li>Geen excessive trolling of spammen</li>
+                        </ul>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <h3>Community Standaarden</h3>
+                        <ul class="rule-list">
+                            <li>Volg staff instructies te allen tijde</li>
+                            <li>Meld regel overtredingen aan staff</li>
+                            <li>Geen advertenties voor andere servers</li>
+                            <li>Houd karakter namen realistisch</li>
+                            <li>Geen ongeautoriseerde opnames voor publicatie</li>
+                            <li>Discord regels zijn ook van toepassing in-game</li>
+                            <li>Respecteer de privacy van andere spelers</li>
+                            <li>Geen ongepaste roleplay (ERP) in openbare ruimtes</li>
+                            <li>Bugs en exploits moeten direct worden gemeld</li>
+                            <li>Houd microfoonschoonheid in acht (geen achtergrondgeluid)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Section -->
+        <section id="join" class="join">
+            <div class="container">
+                <div class="join-content">
+                    <div class="join-text">
+                        <h2>Klaar om te beginnen?</h2>
+                        <p>Sluit je aan bij duizenden spelers in de meest geavanceerde FiveM ervaring</p>
+                    </div>
+                    <div class="join-actions">
+                        <div class="server-info">
+                            <div class="server-ip">
+                                <span>connect 217.154.169.87:40120</span>
+                                <button class="copy-btn" data-copy="connect 217.154.169.87:40120">
+                                    <i data-lucide="copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="join-links">
+                            <a href="#" class="join-link">
+                                <i data-lucide="message-circle"></i>
+                                <span>Discord</span>
+                            </a>
+                            <a href="#rules" class="join-link">
+                                <i data-lucide="book-open"></i>
+                                <span>APV</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Zilverdam Roleplay. Alle rechten voorbehouden.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Voorwaarden</a>
+                    <a href="https://fourtwenty.dev" target="_blank">Template door FourTwentyDevs</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
