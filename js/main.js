@@ -832,7 +832,7 @@ function sendToDiscordWebhook(data) {
     ],
     timestamp: new Date().toISOString(),
     footer: {
-      text: 'Zilverdam Roleplay - Sollicitatie Systeem'
+      text: 'Nieuw Holland Roleplay - Sollicitatie Systeem'
     }
   };
   
@@ -843,7 +843,7 @@ function sendToDiscordWebhook(data) {
     },
     body: JSON.stringify({
       embeds: [embed],
-      username: 'Zilverdam Sollicitaties',
+      username: 'Nieuw Holland Sollicitaties',
       avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png'
     })
   });
