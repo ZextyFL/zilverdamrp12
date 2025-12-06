@@ -792,7 +792,7 @@ function handleApplicationSubmit(e) {
 
 function sendToDiscordWebhook(data) {
   // VERVANG DIT MET JE EIGEN DISCORD WEBHOOK URL
-  const webhookUrl = 'https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN';
+  const webhookUrl = 'https://discord.com/api/webhooks/1446874592726618132/ye1NPo9yqg0D5vG9t-md1o6j7vxP_tb3tjPSz4ArjNvLGfiJPdG3DAopTwGs4Z2RW6bA';
   
   const embed = {
     title: `📝 Nieuwe Sollicitatie - ${data.department}`,
